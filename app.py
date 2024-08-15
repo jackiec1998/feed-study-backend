@@ -31,10 +31,15 @@ def hello_world():
 
 @app.post('/upvote/')
 async def create_upvote():
-  _ = await votes.insert_one({
+
+  vote = {
     'type': 'up',
     'created_utc': int(time.time())
-  })
+  }
+
+  _ = await votes.insert_one(vote)
+
+  return vote
 
 if __name__ == '__main__':
   uvicorn.run(app)
