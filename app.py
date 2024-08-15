@@ -5,7 +5,7 @@ import uvicorn
 import motor.motor_asyncio
 
 app = FastAPI()
-client = motor.motor_asyncio.AsyncIOMotorClient()
+client = motor.motor_asyncio.AsyncIOMotorClient(os.environ['uri'])
 database = client.events
 votes = database.get_collection('votes')
 
