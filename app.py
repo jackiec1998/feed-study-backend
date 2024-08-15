@@ -11,11 +11,12 @@ database = client.events
 votes = database.get_collection('votes')
 
 origins = [
-    'http://localhost:5173',  # Development
-    'http://localhost:5173/feed-study/feed',
-    'https://jackiec1998.github.io',  # Production
-    'https://jackiec1998.github.io/feed-study/feed',
-    'https://feed-study-backend.vercel.app'
+  '*'
+    # 'http://localhost:5173',  # Development
+    # 'http://localhost:5173/feed-study/feed',
+    # 'https://jackiec1998.github.io',  # Production
+    # 'https://jackiec1998.github.io/feed-study/feed',
+    # 'https://feed-study-backend.vercel.app'
 ]
 
 app.add_middleware(
