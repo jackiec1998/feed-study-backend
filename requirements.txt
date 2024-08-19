@@ -1,3 +1,4 @@
 fastapi==0.112.0
 uvicorn==0.30.6
 motor==3.5.1
+pytz==2022.7.1
