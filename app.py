@@ -8,6 +8,11 @@ import uvicorn
 import motor.motor_asyncio
 
 def get_connection():
+  '''
+  You need to re-establish the connection
+  each time, here's an example:
+  https://github.com/mongodb-developer/vercel-mongodb-next-fastapi-starter/blob/main/api/index.py#L67
+  '''
   client = motor.motor_asyncio.AsyncIOMotorClient(os.environ['uri'])
   events = client.get_database('events')
 
