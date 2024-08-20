@@ -18,21 +18,12 @@ database = client.events
 votes = database.get_collection('votes')
 
 origins = [
-  '*',
   'http://localhost:5173',  # Development
   # 'https://jackiec1998.github.io',  # Production
   # 'https://jackiec1998.github.io/feed-study/feed',
   # 'https://feed-study-backend.vercel.app'
 ]
 
-@app.middleware('http')
-async def add_cors_headers(request, call_next):
-    response = await call_next(request)
-    response.headers['Access-Control-Allow-Origin'] = 'http://localhost:5173'
-    response.headers['Access-Control-Allow-Credentials'] = 'true'
-    response.headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
-    response.headers['Access-Control-Allow-Headers'] = 'Content-Type, Authorization'
-    return response
 
 app.add_middleware(
   CORSMiddleware,
