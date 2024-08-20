@@ -56,6 +56,12 @@ async def create_upvote():
 
   return {'message': 'Upvote successfully submitted.'}
 
+@app.get('/passcode/')
+async def check_passcode(passcode: str):
+  return {'valid': passcode in [
+    'cat'
+  ]}
+
 if __name__ == '__main__':
   uvicorn.run(app)
 
