@@ -13,14 +13,14 @@ def get_local_time():
   return central_time.strftime('%m/%d/%Y %I:%M %p')
 
 app = FastAPI()
+
 client = motor.motor_asyncio.AsyncIOMotorClient(os.environ['uri'])
-database = client.events
-votes = database.get_collection('votes')
+events = client.get_database('events')
+votes = events.get_collection('votes')
 
 origins = [
   '*',
 ]
-
 
 app.add_middleware(
   CORSMiddleware,
@@ -37,13 +37,13 @@ def hello_world():
 @app.post('/upvote/')
 async def create_upvote():
 
-  # vote = {
-  #   'type': 'up',
-  #   'created_utc': int(time.time()),
-  #   'local_time': get_local_time()
-  # }
+  vote = {
+    'type': 'up',
+    'created_utc': int(time.time()),
+    'local_time': get_local_time()
+  }
 
-  # await votes.insert_one(vote)
+  _ = await votes.insert_one(vote)
 
   return {'message': 'Upvote successfully submitted.'}
 
