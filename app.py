@@ -7,6 +7,12 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import motor.motor_asyncio
 
+def get_connection():
+  client = motor.motor_asyncio.AsyncIOMotorClient(os.environ['uri'])
+  events = client.get_database('events')
+
+  return events
+
 def get_local_time():
   utc_time = dt.datetime.now(pytz.utc)
   central_time = utc_time.astimezone(pytz.timezone('America/Chicago'))
@@ -33,9 +39,7 @@ def hello_world():
 @app.post('/upvote/')
 async def create_upvote():
 
-  client = motor.motor_asyncio.AsyncIOMotorClient(os.environ['uri'])
-  events = client.get_database('events')
-  votes = events.get_collection('votes')
+  votes = get_connection().get_collection('votes')
 
   vote = {
     'type': 'up',
