@@ -37,13 +37,13 @@ def hello_world():
 @app.post('/upvote/')
 async def create_upvote():
 
-  vote = {
-    'type': 'up',
-    'created_utc': int(time.time()),
-    'local_time': get_local_time()
-  }
+  # vote = {
+  #   'type': 'up',
+  #   'created_utc': int(time.time()),
+  #   'local_time': get_local_time()
+  # }
 
-  await votes.insert_one(vote)
+  # await votes.insert_one(vote)
 
   return {'message': 'Upvote successfully submitted.'}
 
