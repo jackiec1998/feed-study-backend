@@ -14,10 +14,6 @@ def get_local_time():
 
 app = FastAPI()
 
-client = motor.motor_asyncio.AsyncIOMotorClient(os.environ['uri'])
-events = client.get_database('events')
-votes = events.get_collection('votes')
-
 origins = [
   '*',
 ]
@@ -36,6 +32,10 @@ def hello_world():
 
 @app.post('/upvote/')
 async def create_upvote():
+
+  client = motor.motor_asyncio.AsyncIOMotorClient(os.environ['uri'])
+  events = client.get_database('events')
+  votes = events.get_collection('votes')
 
   vote = {
     'type': 'up',
