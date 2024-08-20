@@ -18,10 +18,7 @@ database = client.events
 votes = database.get_collection('votes')
 
 origins = [
-  'http://localhost:5173',  # Development
-  # 'https://jackiec1998.github.io',  # Production
-  # 'https://jackiec1998.github.io/feed-study/feed',
-  # 'https://feed-study-backend.vercel.app'
+  '*',
 ]
 
 
